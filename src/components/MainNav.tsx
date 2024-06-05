@@ -93,6 +93,14 @@ const MainNav = ({ children }: { children: React.ReactNode }) => {
               </Link>
             </span>
 
+            <span>
+              <Link href={"/app"}>
+                <div>
+                  <span>All Projects</span>
+                </div>
+              </Link>
+            </span>
+
             <AvatarMenu />
           </div>
         </div>
@@ -134,6 +142,14 @@ const MainNav = ({ children }: { children: React.ReactNode }) => {
                 <Link href={"/add-project"}>
                   <div>
                     <span>Add New Project</span>
+                  </div>
+                </Link>
+              </span>
+
+              <span>
+                <Link href={"/app"}>
+                  <div>
+                    <span>All Projects</span>
                   </div>
                 </Link>
               </span>

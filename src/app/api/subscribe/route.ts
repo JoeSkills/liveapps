@@ -39,8 +39,8 @@ export async function POST(req: NextRequest) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.log("blah blah causing my issues");
       const error = data.errors?.[0]?.error || "Unknown error occurred";
+      console.log(error);
       return NextResponse.json({ error }, { status: response.status });
     }
 

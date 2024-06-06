@@ -4,5 +4,5 @@ export default async function middleware(req: NextRequest) {
   return withAuth(req);
 }
 export const config = {
-  matcher: ["/app-idea", "/app", "/dashboard", "/profile"],
+  matcher: ["/app-project", "/app", "/dashboard", "/profile"],
 };

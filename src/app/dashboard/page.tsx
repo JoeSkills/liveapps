@@ -26,6 +26,7 @@ const getFilteredIdeasByUser = async (id: string | undefined) => {
 const Dashboard = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+  if (!user?.id) return <></>;
   const ideas = (await getFilteredIdeasByUser(user?.id)) as {
     docId: string;
     title: string;

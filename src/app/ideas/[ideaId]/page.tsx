@@ -11,6 +11,12 @@ import { polyfill } from "interweave-ssr";
 
 polyfill();
 
+const getIdeaDataFromFirebase = async (id: string) => {
+  const ideaDoc = await getDoc(doc(db, "ideas", id));
+
+  return { ...ideaDoc.data(), id: ideaDoc.id } as Idea;
+};
+
 const IdeaPage = async ({ params }: { params: { ideaId: string } }) => {
   const getCommentsFromFirebase = async () => {
     const commentsData = await getDoc(doc(db, "ideas", params.ideaId));
@@ -78,9 +84,3 @@ const IdeaPage = async ({ params }: { params: { ideaId: string } }) => {
 };
 
 export default IdeaPage;
-
-export const getIdeaDataFromFirebase = async (id: string) => {
-  const ideaDoc = await getDoc(doc(db, "ideas", id));
-
-  return { ...ideaDoc.data(), id: ideaDoc.id } as Idea;
-};

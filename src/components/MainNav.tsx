@@ -18,6 +18,7 @@ import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { Skeleton } from "./ui/skeleton";
 import { Button } from "./ui/button";
+import { ModeToggle } from "./ModeToggle";
 
 const AvatarMenu = () => {
   const { user } = useKindeBrowserClient();
@@ -43,7 +44,7 @@ const AvatarMenu = () => {
 
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href={`/profile/${user?.id}`}>Profile</Link>
+          <Link href={`/profile`}>Profile</Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem>
@@ -101,6 +102,8 @@ const MainNav = ({ children }: { children: React.ReactNode }) => {
               </Link>
             </span>
 
+            <ModeToggle />
+
             <AvatarMenu />
           </div>
         </div>
@@ -111,7 +114,7 @@ const MainNav = ({ children }: { children: React.ReactNode }) => {
   ) : (
     <div className="h-screen overflow-hidden">
       <nav className="px-4 py-4 relative md:px-16">
-        <div className="px-4 py-4 absolute left-0 top-0 h-screen w-full bg-background overflow-hidden">
+        <div className="px-4 py-4 absolute z-50 left-0 top-0 h-screen w-full bg-background overflow-hidden">
           <div className="flex justify-between items-center">
             <span className="font-bold">
               <Link href={"/"}>Live Apps</Link>
@@ -126,14 +129,24 @@ const MainNav = ({ children }: { children: React.ReactNode }) => {
           <Separator className="my-2" />
           <div className="mt-6 ">
             <div className="flex flex-col gap-3  ">
+              <ModeToggle />
               {user ? (
-                <span>
-                  <Link href={"/dashboard"}>
-                    <div>
-                      <span>Dashboard</span>
-                    </div>
-                  </Link>
-                </span>
+                <>
+                  <span>
+                    <Link href={"/profile"}>
+                      <div>
+                        <span>Profile</span>
+                      </div>
+                    </Link>
+                  </span>
+                  <span>
+                    <Link href={"/dashboard"}>
+                      <div>
+                        <span>Dashboard</span>
+                      </div>
+                    </Link>
+                  </span>
+                </>
               ) : (
                 <LoginLink>Sign in</LoginLink>
               )}

@@ -34,7 +34,7 @@ const Dashboard = async () => {
   return (
     <div className="px-2 py-2 md:px-16">
       <div className="w-64 hidden md:block">
-        <span className="text-lg">Your Project</span>
+        <span className="text-lg">Your Projects</span>
         <div className="mt-12">
           <div className="flex gap-4 md:gap-8 flex-col md:flex-row ">
             <Link href={"/dashboard"}>

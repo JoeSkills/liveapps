@@ -4,11 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const ProfilePage = async ({ params }: { params: { profileId: string } }) => {
-  const { users } = await Users.getUsers({ userId: params.profileId });
+  const user = await Users.getUserData({ id: params.profileId });
 
-  if (!users) return;
-
-  const user = users[0];
+  if (!user) return <></>;
 
   return (
     <div className="px-2 py-2 md:px-16">
@@ -30,7 +28,7 @@ const ProfilePage = async ({ params }: { params: { profileId: string } }) => {
             <span className="text-xl">
               {user?.first_name} {user?.last_name}
             </span>
-            <span>{user?.email}</span>
+            <span>{user?.preferred_email}</span>
           </div>
         </div>
         <div className="mt-4">

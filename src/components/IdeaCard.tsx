@@ -75,7 +75,10 @@ const IdeaCard = ({
           <span className="text-sm font-semibold">Joseph Oritseweyinmi</span>
           <div className="mb-4" />
         </div>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>
+          {" "}
+          <Link href={`/ideas/${id}#feedback`}>{title}</Link>
+        </CardTitle>
       </CardHeader>
       <CardContent>{description}</CardContent>
       <CardFooter>

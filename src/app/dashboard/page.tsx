@@ -6,17 +6,21 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
 
 const getFilteredIdeasByUser = async (id: string | undefined) => {
-  const ideasQuerySnapshot = await getDocs(
-    query(collection(db, "ideas"), where("uid", "==", id))
-  );
-  if (ideasQuerySnapshot.size < 0) return;
+  try {
+    const ideasQuerySnapshot = await getDocs(
+      query(collection(db, "ideas"), where("uid", "==", id))
+    );
+    if (ideasQuerySnapshot.size < 0) return;
 
-  return ideasQuerySnapshot.docs.map((doc) => {
-    return {
-      ...doc.data(),
-      docId: doc.id,
-    } as unknown;
-  });
+    return ideasQuerySnapshot.docs.map((doc) => {
+      return {
+        ...doc.data(),
+        docId: doc.id,
+      } as unknown;
+    });
+  } catch (error) {
+    console.warn(error);
+  }
 };
 
 const Dashboard = async () => {
@@ -30,6 +34,8 @@ const Dashboard = async () => {
     uid: string | undefined;
     idea: string;
   }[];
+
+  if (!ideas) <></>;
 
   return (
     <div className="px-2 py-2 md:px-16">
